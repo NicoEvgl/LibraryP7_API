@@ -70,8 +70,8 @@ public class CopyServiceImpl implements CopyService {
         List<String> email = new ArrayList<>();
         List<Copy> copies = copyDao.findAllByLoanEndDateBefore(Date.valueOf(LocalDate.now()));
         for (int i = 0; i<copies.size();i++){
-            String adress = copies.get(i).getUser().getEmail();
-            email.add(adress);
+            String address = copies.get(i).getUser().getEmail();
+            email.add(address);
         }
         return email;
     }

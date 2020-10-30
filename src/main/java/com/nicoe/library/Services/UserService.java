@@ -9,4 +9,5 @@ public interface UserService {
     List<User> findUserList();
     User findUserByUsername(String username);
     Boolean connectionCheck(User user);
+    User findByUserId(Integer userId);
 }

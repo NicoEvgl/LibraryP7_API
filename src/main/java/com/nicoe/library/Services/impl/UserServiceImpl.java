@@ -40,4 +40,10 @@ public class UserServiceImpl implements UserService {
         boolean connectionCheck = false;
         return connectionCheck;
     }
+
+    @Override
+    public User findByUserId(Integer userId) {
+        User user = findByUserId(userId);
+        return user;
+    }
 }
