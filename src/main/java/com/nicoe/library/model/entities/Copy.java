@@ -13,7 +13,7 @@ public class Copy implements Serializable {
     @Id
     @GeneratedValue
     @Column (name = "id", nullable = false)
-    private Integer id;
+    private Integer copyId;
     @Column (name = "loan_start_date", nullable = true)
     private Date loanStarDate;
     @Column (name = "loan_end_date", nullable = true)
@@ -40,12 +40,12 @@ public class Copy implements Serializable {
     private Library library;
 
 
-    public Integer getId() {
-        return id;
+    public Integer getCopyId() {
+        return copyId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setCopyId(Integer copyId) {
+        this.copyId = copyId;
     }
 
     public Date getLoanStarDate() {
