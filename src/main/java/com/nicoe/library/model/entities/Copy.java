@@ -20,8 +20,8 @@ public class Copy implements Serializable {
     private Date loanEndDate;
     @Column (name = "extend", nullable = false)
     private Boolean extend;
-    @Column (name = "available", nullable = false)
-    private Boolean isAvailable;
+    @Column (name = "is_available", nullable = false)
+    private Boolean available;
 
     @ManyToOne
     @JsonIgnore
@@ -73,11 +73,11 @@ public class Copy implements Serializable {
     }
 
     public Boolean getAvailable() {
-        return isAvailable;
+        return available;
     }
 
     public void setAvailable(Boolean available) {
-        isAvailable = available;
+        this.available = available;
     }
 
     public User getUser() {
