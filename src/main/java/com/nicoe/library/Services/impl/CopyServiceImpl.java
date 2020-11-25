@@ -23,6 +23,7 @@ public class CopyServiceImpl implements CopyService {
     public Copy extendLoan(Integer copyId) {
         Copy copy = findCopyById(copyId);
         Date dayDate = Date.valueOf(LocalDate.now());
+        assert copy != null;
         if (dayDate.compareTo(copy.getLoanEndDate()) <0){
             copy = editDateAndExtension(copy);
             copy.setExtend(true);
@@ -60,7 +61,7 @@ public class CopyServiceImpl implements CopyService {
         copy.setAvailable(true);
         copy.setExtend(false);
         copy.setUser(null);
-        copy.setLoanStarDate(null);
+        copy.setLoanStartDate(null);
         copy.setLoanEndDate(null);
         copyDao.save(copy);
     }
@@ -77,8 +78,8 @@ public class CopyServiceImpl implements CopyService {
     }
 
     private Copy editDateAndExtension(Copy copy) {
-        if (copy.getLoanStarDate() == null){
-            copy.setLoanStarDate(Date.valueOf(LocalDate.now()));
+        if (copy.getLoanStartDate() == null){
+            copy.setLoanStartDate(Date.valueOf(LocalDate.now()));
         }
         if (copy.getLoanEndDate() == null) {
             copy.setLoanEndDate(Date.valueOf(LocalDate.now().plusDays(28)));

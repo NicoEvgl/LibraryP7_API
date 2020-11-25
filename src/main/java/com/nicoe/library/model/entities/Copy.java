@@ -15,7 +15,7 @@ public class Copy implements Serializable {
     @Column (name = "copy_id", nullable = false)
     private Integer copyId;
     @Column (name = "loan_start_date", nullable = true)
-    private Date loanStarDate;
+    private Date loanStartDate;
     @Column (name = "loan_end_date", nullable = true)
     private Date loanEndDate;
     @Column (name = "extend", nullable = false)
@@ -48,12 +48,12 @@ public class Copy implements Serializable {
         this.copyId = copyId;
     }
 
-    public Date getLoanStarDate() {
-        return loanStarDate;
+    public Date getLoanStartDate() {
+        return loanStartDate;
     }
 
-    public void setLoanStarDate(Date loanStarDate) {
-        this.loanStarDate = loanStarDate;
+    public void setLoanStartDate(Date loanStartDate) {
+        this.loanStartDate = loanStartDate;
     }
 
     public Date getLoanEndDate() {
