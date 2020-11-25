@@ -24,33 +24,33 @@ public class CopyController {
         return copy;
     }
 
-    @GetMapping("/consultLoans")
+    @GetMapping("/consult-loans")
     public List<Copy> consultLoans(){
         List<Copy> loans = copyService.loanList();
         return loans;
     }
 
-    @GetMapping("/consultLoans/{userId}")
-    public List<Copy> consultLoansByUserId(@PathVariable Integer userId){
+    @GetMapping("/consult-loans/{userId}")
+    public List<Copy> consultMyLoans(@PathVariable Integer userId){
         List<Copy> loans = copyService.myLoans(userId);
         return loans;
     }
 
-    @GetMapping("/returnLoan/{copyId}")
+    @GetMapping("/return-loan/{copyId}")
     public String returnLoan(@PathVariable Integer copyId){
         copyService.returnLoan(copyId);
 
         return "L'exemplaire a été rendu";
     }
 
-    @PostMapping("/loanCopy/{userId}")
-    public String loanCopy(@RequestBody Copy copy, @PathVariable Integer userId){
+    @PostMapping("/borrow/{userId}")
+    public String borrowCopy(@RequestBody Copy copy, @PathVariable Integer userId){
         copy.setUser(userService.findByUserId(userId));
-        String retour = "La date de retour de l'exemplaire est le : " + copyService.makeLoan(copy);
-        return retour;
+        String borrowedCopy = "La date de retour de l'exemplaire est le : " + copyService.makeLoan(copy);
+        return borrowedCopy;
     }
 
-    @GetMapping("/loanInLate")
+    @GetMapping("/loanLate-list")
     public List<String> emailList(){
         List<String> email =new ArrayList<>();
         email = copyService.emailList();

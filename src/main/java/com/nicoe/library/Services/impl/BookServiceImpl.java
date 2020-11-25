@@ -26,8 +26,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Integer findAvailableBook(Integer id) {
-        Integer nbAvailable = copyDao.findAllByBook_IdAndAvailableTrue(id).size();
+    public Integer findAvailableBook(Integer bookId) {
+        Integer nbAvailable = copyDao.findAllByBook_BookIdAndAvailableTrue(bookId).size();
         return nbAvailable;
     }
 

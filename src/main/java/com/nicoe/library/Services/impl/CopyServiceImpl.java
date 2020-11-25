@@ -20,8 +20,8 @@ public class CopyServiceImpl implements CopyService {
     CopyDao copyDao;
 
     @Override
-    public Copy extendLoan(Integer id) {
-        Copy copy = findCopyById(id);
+    public Copy extendLoan(Integer copyId) {
+        Copy copy = findCopyById(copyId);
         Date dayDate = Date.valueOf(LocalDate.now());
         if (dayDate.compareTo(copy.getLoanEndDate()) <0){
             copy = editDateAndExtension(copy);
@@ -32,8 +32,8 @@ public class CopyServiceImpl implements CopyService {
     }
 
     @Override
-    public List<Copy> myLoans(Integer id) {
-        List<Copy> copies = copyDao.findAllByUser_Id(id);
+    public List<Copy> myLoans(Integer userId) {
+        List<Copy> copies = copyDao.findAllByUser_UserId(userId);
         return copies;
     }
 
@@ -89,7 +89,7 @@ public class CopyServiceImpl implements CopyService {
     }
 
     private Copy findCopyById(Integer copyId){
-        Optional<Copy> copy = Optional.ofNullable(copyDao.findByCopyId(copyId));
+        Optional<Copy> copy = copyDao.findById(copyId);
         return copy.isPresent() ? copy.get() :null ;
     }
 }

@@ -9,16 +9,14 @@ import java.util.Set;
 public class User implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
-    @Column (name = "id", nullable = false)
-    private Integer id;
-    @Column (name = "gender", nullable = false)
-    private String gender;
+    @Column (name = "user_id", nullable = false)
+    private Integer userId;
     @Column (name = "first_name",nullable = false,length = 100)
     private String firstName;
     @Column (name = "last_name",nullable = false,length = 100)
     private String lastName;
-    @Column (name = "username",nullable = false,length = 50)
-    private String username;
+    @Column (name = "pseudo",nullable = false,length = 50)
+    private String pseudo;
     @Column (name = "password",nullable = false,length = 50)
     private String password;
     @Column(name="email",nullable = false,length = 150)
@@ -27,20 +25,12 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Copy> copies;
 
-    public Integer getId() {
-        return id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {
@@ -59,12 +49,12 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getUsername() {
-        return username;
+    public String getPseudo() {
+        return pseudo;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
     }
 
     public String getPassword() {

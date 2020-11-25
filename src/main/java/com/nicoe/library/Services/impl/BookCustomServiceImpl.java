@@ -22,18 +22,18 @@ public class BookCustomServiceImpl implements BookCustomService {
     }
 
     @Override
-    public List<Book> multiCriteriaBook(BookFromCriterias criterias) {
+    public List<Book> multiCriteriaBook(BookFromCriteria criteria) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Book> criteriaQuery = criteriaBuilder.createQuery(Book.class);
 
         Root<Book> bookRoot = criteriaQuery.from(Book.class);
         List<Predicate> predicates = new ArrayList<>();
 
-        if (!criterias.getTitle().equals("")) {
-            predicates.add(criteriaBuilder.equal(bookRoot. get("title"), criterias.getTitle()));
+        if (!criteria.getTitle().equals("")) {
+            predicates.add(criteriaBuilder.equal(bookRoot. get("title"), criteria.getTitle()));
         }
-        if (!criterias.getAuthor().equals("")) {
-            predicates.add(criteriaBuilder.equal(bookRoot. get("author"), criterias.getAuthor()));
+        if (!criteria.getAuthor().equals("")) {
+            predicates.add(criteriaBuilder.equal(bookRoot. get("author"), criteria.getAuthor()));
         }
         criteriaQuery.where(predicates.toArray(new Predicate[0]));
 

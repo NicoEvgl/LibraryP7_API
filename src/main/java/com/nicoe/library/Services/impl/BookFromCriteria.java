@@ -1,6 +1,6 @@
 package com.nicoe.library.Services.impl;
 
-public class BookFromCriterias {
+public class BookFromCriteria {
     private String title;
     private String author;
 

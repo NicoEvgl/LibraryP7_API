@@ -15,5 +15,8 @@
         <property name="format_sql">true</property> <!-- Show SQL formatted -->
         <mapping package="com.nicoe.library.model.entities"/>
         <mapping class="com.nicoe.library.model.entities.User" />
+        <mapping class="com.nicoe.library.model.entities.Book" />
+        <mapping class="com.nicoe.library.model.entities.Library" />
+        <mapping class="com.nicoe.library.model.entities.Copy" />
     </session-factory>
 </hibernate-configuration>

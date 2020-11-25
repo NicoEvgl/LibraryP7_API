@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -26,24 +27,29 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserByUsername(String username) {
-        User user = userDao.findByUsername(username);
+    public User findUserByPseudo(String pseudo) {
+        User user = userDao.findByPseudo(pseudo);
         return user;
     }
 
     @Override
-    public Boolean connectionCheck(User user) {
-        User registeredUser = userDao.findByUsername(user.getUsername());
-        if (registeredUser.getPassword().equals(user.getPassword())) {
-            boolean connectionCheck = true;
+    public Boolean checkUser(User user) {
+        User userInBdd = userDao.findByPseudo(user.getPseudo());
+        if (userInBdd.getPassword().equals(user.getPassword())) {
+            boolean userChecked = true;
         }
-        boolean connectionCheck = false;
-        return connectionCheck;
+        boolean userChecked = false;
+        return false;
     }
 
     @Override
     public User findByUserId(Integer userId) {
-        User user = findByUserId(userId);
+        User user = findById(userId);
         return user;
+    }
+
+    public User findById(Integer userId) {
+        Optional<User> user = userDao.findById(userId);
+        return user.isPresent() ? user.get() :null ;
     }
 }

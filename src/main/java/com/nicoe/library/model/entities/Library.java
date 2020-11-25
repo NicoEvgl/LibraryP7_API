@@ -9,20 +9,20 @@ import java.util.Set;
 public class Library implements Serializable {
     @Id
     @GeneratedValue( strategy= GenerationType.IDENTITY )
-    @Column (name = "id",nullable = false)
-    private Integer id;
+    @Column (name = "library_id",nullable = false)
+    private Integer libraryId;
     @Column (name = "location",nullable = false,length = 255)
     private String location;
 
     @OneToMany(mappedBy = "library", cascade = CascadeType.ALL)
     private Set<Copy> copies;
 
-    public Integer getId() {
-        return id;
+    public Integer getLibraryId() {
+        return libraryId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setLibraryId(Integer libraryId) {
+        this.libraryId = libraryId;
     }
 
     public String getLocation() {

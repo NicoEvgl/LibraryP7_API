@@ -9,8 +9,8 @@ import java.util.Set;
 public class Book implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id", nullable = false)
-    private Integer id;
+    @Column (name = "book_id", nullable = false)
+    private Integer bookId;
     @Column (name = "title", nullable = false, length = 255)
     private String title;
     @Column (name = "author", nullable = false, length = 255)
@@ -19,12 +19,12 @@ public class Book implements Serializable {
     @OneToMany (mappedBy = "book", cascade = CascadeType.ALL)
     private Set<Copy> copies;
 
-    public Integer getId() {
-        return id;
+    public Integer getBookId() {
+        return bookId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setBookId(Integer bookId) {
+        this.bookId = bookId;
     }
 
     public String getTitle() {

@@ -12,7 +12,7 @@ import java.util.Date;
 public class Copy implements Serializable {
     @Id
     @GeneratedValue
-    @Column (name = "id", nullable = false)
+    @Column (name = "copy_id", nullable = false)
     private Integer copyId;
     @Column (name = "loan_start_date", nullable = true)
     private Date loanStarDate;
@@ -20,7 +20,7 @@ public class Copy implements Serializable {
     private Date loanEndDate;
     @Column (name = "extend", nullable = false)
     private Boolean extend;
-    @Column (name = "is_available", nullable = false)
+    @Column (name = "available", nullable = false)
     private Boolean available;
 
     @ManyToOne

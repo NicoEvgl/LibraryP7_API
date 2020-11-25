@@ -13,26 +13,26 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/loginProcess")
+    @PostMapping("/login")
     public boolean connectionCheck(@PathVariable User user){
-        Boolean login = userService.connectionCheck(user);
-        return login;
+        Boolean loggedIn = userService.checkUser(user);
+        return loggedIn;
     }
 
-    @PostMapping("/registerProcess")
-    public void creationCompte(@RequestBody User user){
+    @PostMapping("/account-creation")
+    public void accountCreation(@RequestBody User user){
         userService.createUser(user);
     }
 
-    @GetMapping("/userList")
+    @GetMapping("/user-list")
     public List<User> userList(){
         List<User> userList = userService.findUserList();
         return userList;
     }
 
-    @GetMapping("/findUser/{username}")
-    public User findUserByUsername(@PathVariable String username){
-        User user = userService.findUserByUsername(username);
+    @GetMapping("/find-user/{pseudo}")
+    public User findUser(@PathVariable String pseudo){
+        User user = userService.findUserByPseudo(pseudo);
         return user;
     }
 }

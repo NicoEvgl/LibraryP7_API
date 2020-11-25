@@ -19,8 +19,8 @@ public class LibraryController {
     BookService bookService;
 
     @GetMapping("/library")
-    public List<Library> libraryList() {
-        List<Library> libraries = libraryService.libraryList();
-        return libraries;
+    public List<Library> copiesList() {
+        List<Library> libraryList = libraryService.libraryList();
+        return libraryList;
     }
 }
