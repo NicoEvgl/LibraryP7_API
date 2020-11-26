@@ -51,9 +51,9 @@ public class CopyController {
     }
 
     @GetMapping("/loanLate-list")
-    public List<String> emailList(){
+    public List<String> listMail(){
         List<String> email =new ArrayList<>();
-        email = copyService.emailList();
+        email = copyService.listMail();
         return email;
     }
 }

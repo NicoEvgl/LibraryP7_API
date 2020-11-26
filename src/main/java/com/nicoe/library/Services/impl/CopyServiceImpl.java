@@ -67,7 +67,7 @@ public class CopyServiceImpl implements CopyService {
     }
 
     @Override
-    public List<String> emailList() {
+    public List<String> listMail() {
         List<String> email = new ArrayList<>();
         List<Copy> copies = copyDao.findAllByLoanEndDateBefore(Date.valueOf(LocalDate.now()));
         for (int i = 0; i<copies.size();i++){

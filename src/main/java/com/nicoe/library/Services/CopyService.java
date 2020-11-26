@@ -10,5 +10,5 @@ public interface CopyService {
     List<Copy> loanList();
     String makeLoan(Copy copy);
     void returnLoan(Integer copyId);
-    List<String> emailList();
+    List<String> listMail();
 }
