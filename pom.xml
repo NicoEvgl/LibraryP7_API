@@ -11,6 +11,8 @@
 	<groupId>com.nicoe</groupId>
 	<artifactId>LibraryP7_API</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
 	<name>LibraryP7_API</name>
 	<description>Web api for the Library Project [OC_P7]</description>
 
