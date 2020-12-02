@@ -1,6 +1,7 @@
 # LibraryP7_API
 
 Contexte
+
 Ce projet a été développé dans le cadre du cursus "Développeur d'application Java" d'OpenClassrooms et correspond à l'API du projet 7 "Développez le nouveau système d’information de la bibliothèque d’une grande ville". 
 
 L'API permet d'exposer les informatinos concernant le catalogues et la gestion des prêts d'une bibliothèque.
