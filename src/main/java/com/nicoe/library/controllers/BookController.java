@@ -24,12 +24,21 @@ public class BookController {
     @Autowired
     BookCustomService bookCustomService;
 
+    /**
+     * Display Book List
+     * @return books
+     */
     @GetMapping("/book")
     public List<Book> bookList() {
         List<Book> books = bookService.bookList();
         return books;
     }
 
+    /**
+     * Display search results
+     * @param bookFromCriteria search book by criteria
+     * @return bookSearchResults
+     */
     @PostMapping("/search-book")
     public List<BookSearchResult> bookSearchResults(@RequestBody BookFromCriteria bookFromCriteria) {
         List<Book> books = bookCustomService.multiCriteriaBook(bookFromCriteria);
@@ -43,6 +52,10 @@ public class BookController {
         return bookSearchResults;
     }
 
+    /**
+     * find loans in late
+     * @return copies
+     */
     @GetMapping("/late-loan")
     public List<Copy> lateLoan(){
         List<Copy> copies = bookService.loanInLate();

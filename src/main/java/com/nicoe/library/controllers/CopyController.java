@@ -18,18 +18,32 @@ public class CopyController {
     @Autowired
     UserService userService;
 
+    /**
+     * Extend Loan
+     * @param copyId Integer Copy ID
+     * @return copy
+     */
     @GetMapping("/extend/{copyId}")
     public Copy extendLoan(@PathVariable Integer copyId){
         Copy copy = copyService.extendLoan(copyId);
         return copy;
     }
 
+    /**
+     * find loan List
+     * @return loans
+     */
     @GetMapping("/consult-loans")
     public List<Copy> consultLoans(){
         List<Copy> loans = copyService.loanList();
         return loans;
     }
 
+    /**
+     * Display user's loans
+     * @param userId
+     * @return loans
+     */
     @GetMapping("/consult-loans/{userId}")
     public List<Copy> consultMyLoans(@PathVariable Integer userId){
         List<Copy> loans = copyService.myLoans(userId);
