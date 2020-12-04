@@ -45,6 +45,7 @@ Les paramètres de connection à la base sont à modifier dans le fichier src\re
 Application standalone intégrant un conteneur web (grace à SpringBoot)
 
 Ouvrir le terminal de commande, se placer dans le dossier du projet cloné puis taper les commandes :
+
 mvn clean spring-boot:run
 
 3.Accès
