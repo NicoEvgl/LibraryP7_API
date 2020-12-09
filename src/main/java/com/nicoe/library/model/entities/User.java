@@ -80,4 +80,17 @@ public class User implements Serializable {
     public void setCopies(Set<Copy> copies) {
         this.copies = copies;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", pseudo='" + pseudo + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", copies=" + copies +
+                '}';
+    }
 }

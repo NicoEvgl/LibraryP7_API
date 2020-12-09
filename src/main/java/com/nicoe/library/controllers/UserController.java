@@ -2,6 +2,8 @@ package com.nicoe.library.controllers;
 
 import com.nicoe.library.Services.UserService;
 import com.nicoe.library.model.entities.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,9 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    static Logger logger = LogManager.getLogger(UserController.class);
+
+
     /**
      * Process to login
      * @param user user logged in
@@ -20,6 +25,7 @@ public class UserController {
      */
     @PostMapping("/login")
     public boolean connectionCheck(@PathVariable User user){
+        logger.debug(user.toString());
         Boolean loggedIn = userService.checkUser(user);
         return loggedIn;
     }
@@ -30,6 +36,7 @@ public class UserController {
      */
     @PostMapping("/account-creation")
     public void accountCreation(@RequestBody User user){
+        logger.debug("UserController account-creation");
         userService.createUser(user);
     }
 

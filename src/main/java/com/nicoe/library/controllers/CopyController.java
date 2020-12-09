@@ -3,6 +3,8 @@ package com.nicoe.library.controllers;
 import com.nicoe.library.Services.CopyService;
 import com.nicoe.library.Services.UserService;
 import com.nicoe.library.model.entities.Copy;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,8 @@ public class CopyController {
     @Autowired
     UserService userService;
 
+    static Logger logger = LogManager.getLogger(CopyController.class);
+
     /**
      * Extend Loan
      * @param copyId Integer Copy ID
@@ -25,6 +29,7 @@ public class CopyController {
      */
     @GetMapping("/extend/{copyId}")
     public Copy extendLoan(@PathVariable Integer copyId){
+        logger.debug("CopyController extend");
         Copy copy = copyService.extendLoan(copyId);
         return copy;
     }
@@ -46,6 +51,7 @@ public class CopyController {
      */
     @GetMapping("/consult-loans/{userId}")
     public List<Copy> consultMyLoans(@PathVariable Integer userId){
+        logger.debug("CopyController consult-loans");
         List<Copy> loans = copyService.myLoans(userId);
         return loans;
     }
@@ -59,6 +65,7 @@ public class CopyController {
 
     @PostMapping("/borrow/{userId}")
     public String borrowCopy(@RequestBody Copy copy, @PathVariable Integer userId){
+        logger.debug("CopyController borrow");
         copy.setUser(userService.findByUserId(userId));
         String borrowedCopy = "La date de retour de l'exemplaire est le : " + copyService.makeLoan(copy);
         return borrowedCopy;
@@ -66,6 +73,7 @@ public class CopyController {
 
     @GetMapping("/loanLate-list")
     public List<String> listMail(){
+        logger.debug("CopyController loanLate-list");
         List<String> email =new ArrayList<>();
         email = copyService.listMail();
         return email;

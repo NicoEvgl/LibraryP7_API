@@ -6,6 +6,8 @@ import com.nicoe.library.Services.impl.BookFromCriteria;
 import com.nicoe.library.mapping.BookSearchResult;
 import com.nicoe.library.model.entities.Book;
 import com.nicoe.library.model.entities.Copy;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +26,9 @@ public class BookController {
     @Autowired
     BookCustomService bookCustomService;
 
+    static Logger logger = LogManager.getLogger(BookController.class);
+
+
     /**
      * Display Book List
      * @return books
@@ -41,6 +46,7 @@ public class BookController {
      */
     @PostMapping("/search-book")
     public List<BookSearchResult> bookSearchResults(@RequestBody BookFromCriteria bookFromCriteria) {
+        logger.debug("BookController search-book");
         List<Book> books = bookCustomService.multiCriteriaBook(bookFromCriteria);
         List<BookSearchResult> bookSearchResults = new ArrayList<>();
         for(Book book:books){
@@ -58,6 +64,7 @@ public class BookController {
      */
     @GetMapping("/late-loan")
     public List<Copy> lateLoan(){
+        logger.debug("BookController late-loan");
         List<Copy> copies = bookService.loanInLate();
         return copies;
     }
