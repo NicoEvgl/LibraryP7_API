@@ -1,5 +1,8 @@
 package com.nicoe.library.Services.impl;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class BookFromCriteria {
     private String title;
     private String author;

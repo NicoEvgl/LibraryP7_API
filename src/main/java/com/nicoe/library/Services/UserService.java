@@ -1,9 +1,11 @@
 package com.nicoe.library.Services;
 
 import com.nicoe.library.model.entities.User;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface UserService {
     void createUser(User user);
     List<User> findUserList();

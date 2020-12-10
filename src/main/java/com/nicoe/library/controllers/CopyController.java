@@ -56,6 +56,12 @@ public class CopyController {
         return loans;
     }
 
+
+    /**
+     * Return loan
+     * @param copyId
+     * @return "L'exemplaire a été rendu"
+     */
     @GetMapping("/return-loan/{copyId}")
     public String returnLoan(@PathVariable Integer copyId){
         copyService.returnLoan(copyId);
@@ -63,6 +69,13 @@ public class CopyController {
         return "L'exemplaire a été rendu";
     }
 
+
+    /**
+     * Make Loan
+     * @param copy
+     * @param userId
+     * @return
+     */
     @PostMapping("/borrow/{userId}")
     public String borrowCopy(@RequestBody Copy copy, @PathVariable Integer userId){
         logger.debug("CopyController borrow");
@@ -71,6 +84,11 @@ public class CopyController {
         return borrowedCopy;
     }
 
+
+    /**
+     * Display user's mails with loans in late
+     * @return email
+     */
     @GetMapping("/loanLate-list")
     public List<String> listMail(){
         logger.debug("CopyController loanLate-list");

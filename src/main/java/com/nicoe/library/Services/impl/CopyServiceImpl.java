@@ -60,9 +60,9 @@ public class CopyServiceImpl implements CopyService {
         Copy copy = findCopyById(copyId);
         copy.setAvailable(true);
         copy.setExtend(false);
-        copy.setUser(null);
-        copy.setLoanStartDate(null);
-        copy.setLoanEndDate(null);
+        copy.setUser(copy.getUser());
+        copy.setLoanStartDate(copy.getLoanStartDate());
+        copy.setLoanEndDate(copy.getLoanEndDate());
         copyDao.save(copy);
     }
 
