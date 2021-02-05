@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface BookDao extends JpaRepository<Book, Integer> {
     List<Book> findAll();
+    Book findAllByBookId(Integer bookId);
 }

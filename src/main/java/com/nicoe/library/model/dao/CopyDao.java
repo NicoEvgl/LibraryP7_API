@@ -14,4 +14,6 @@ public interface CopyDao extends JpaRepository<Copy, Integer> {
     List<Copy> findAllByBook_BookIdAndAvailableTrue(Integer bookId);
     List<Copy> findAllByLoanEndDateBefore(Date loanEndDate);
     Copy findByCopyId(Integer copyId);
+    List<Copy> findAllByBook_BookId(Integer bookId);
+    List<Copy> findAllByBook_BookIdOrderByLoanEndDate(Integer bookId);
 }
