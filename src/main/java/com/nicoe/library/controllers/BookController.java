@@ -52,7 +52,7 @@ public class BookController {
         for(Book book:books){
             BookSearchResult bookSearchResult = new BookSearchResult();
             bookSearchResult.setTitle(book.getTitle());
-            bookSearchResult.setNbAvailable(book.getCopies().stream().filter((Copy::getAvailable)).count());
+            bookSearchResult.setNbAvailable((int) book.getCopies().stream().filter((Copy::getAvailable)).count());
             bookSearchResults.add(bookSearchResult);
         }
         return bookSearchResults;
