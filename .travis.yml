@@ -9,8 +9,8 @@ addons:
   sonarcloud:
     organization: "nicoevgl"
     token:
-      secure: a8dd1b9e8f422f7d097c1a2b9e8a21c320a6d397
+      secure: eac4f817bd3b7dc1d81d432b00b267aa0e9097b5
 
 script:
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-  - mvn clean install sonar:sonar -Dsonar.login=a8dd1b9e8f422f7d097c1a2b9e8a21c320a6d397
+  - mvn clean install sonar:sonar -Dsonar.projectKey=NicoEvgl_Library_API -Dsonar.login=eac4f817bd3b7dc1d81d432b00b267aa0e9097b5
