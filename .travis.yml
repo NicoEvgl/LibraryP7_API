@@ -1,0 +1,19 @@
+language: java
+
+jdk:
+  - openjdk11
+
+dist: trusty
+
+addons:
+  sonarcloud:
+    organization: "nicoevgl"
+    token:
+      secure: eac4f817bd3b7dc1d81d432b00b267aa0e9097b5
+
+before_install:
+  - chmod +x mvnw
+
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean install sonar:sonar -Dsonar.projectKey=NicoEvgl_Library_API -Dsonar.login=eac4f817bd3b7dc1d81d432b00b267aa0e9097b5
