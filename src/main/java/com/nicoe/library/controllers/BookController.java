@@ -2,6 +2,7 @@ package com.nicoe.library.controllers;
 
 import com.nicoe.library.Services.BookCustomService;
 import com.nicoe.library.Services.BookService;
+import com.nicoe.library.Services.ReservationService;
 import com.nicoe.library.Services.impl.BookFromCriteria;
 import com.nicoe.library.mapping.BookSearchResult;
 import com.nicoe.library.model.entities.Book;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -25,6 +27,9 @@ public class BookController {
 
     @Autowired
     BookCustomService bookCustomService;
+
+    @Autowired
+    ReservationService reservationService;
 
     static Logger logger = LogManager.getLogger(BookController.class);
 
@@ -53,6 +58,13 @@ public class BookController {
             BookSearchResult bookSearchResult = new BookSearchResult();
             bookSearchResult.setTitle(book.getTitle());
             bookSearchResult.setNbAvailable((int) book.getCopies().stream().filter((Copy::getAvailable)).count());
+            Date returnDate = bookService.returnDate(book.getBookId());
+            if (returnDate != null){
+                bookSearchResult.setExpectedReturnDate(returnDate);
+            }
+            bookSearchResult.setBookId(book.getBookId());
+            bookSearchResult.setNbReservationsMade(reservationService.nbCurrentReservations(book.getBookId()));
+            bookSearchResult.setNbReservationsPossible(bookService.nbAllowedReservations(book.getBookId()));
             bookSearchResults.add(bookSearchResult);
         }
         return bookSearchResults;
