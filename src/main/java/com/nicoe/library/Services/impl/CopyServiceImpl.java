@@ -58,6 +58,7 @@ public class CopyServiceImpl implements CopyService {
     @Override
     public void returnLoan(Integer copyId) {
         Copy copy = findCopyById(copyId);
+        assert copy != null;
         copy.setAvailable(true);
         copy.setExtend(false);
         copy.setUser(copy.getUser());

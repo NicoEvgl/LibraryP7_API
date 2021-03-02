@@ -60,9 +60,9 @@ public class BookServiceImpl implements BookService {
     @Override
     public Integer findRank(Integer bookId, Integer userId) {
         List<Reservation> reservations = reservationDao.findAllByBook_BookIdOrderByReservationId(bookId);
-        Integer rank = 1;
-        for (int i = 0; i < reservations.size(); i++) {
-            if (reservations.get(i).getUser().getUserId().equals(userId)) {
+        int rank = 1;
+        for (Reservation reservation : reservations) {
+            if (reservation.getUser().getUserId().equals(userId)) {
                 rank = rank + 1;
             }
             break;
