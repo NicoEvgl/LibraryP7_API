@@ -47,7 +47,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public Reservation createReservation(CreateReservation createReservation) {
+    public Reservation createReserv(CreateReservation createReservation) {
         Reservation reservation = new Reservation();
         boolean bookable = possibleReservation(createReservation);
         if (bookable) {
