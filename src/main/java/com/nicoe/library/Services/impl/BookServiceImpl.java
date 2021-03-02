@@ -65,7 +65,6 @@ public class BookServiceImpl implements BookService {
             if (reservation.getUser().getUserId().equals(userId)) {
                 rank = rank + 1;
             }
-            break;
         }
         return rank;
     }
