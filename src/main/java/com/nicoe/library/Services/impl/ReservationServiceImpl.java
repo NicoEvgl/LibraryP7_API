@@ -12,6 +12,7 @@ import com.nicoe.library.model.entities.Copy;
 import com.nicoe.library.model.entities.Reservation;
 import com.nicoe.library.model.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.mail.javamail.JavaMailSender;
 
@@ -24,6 +25,9 @@ import java.util.Optional;
 @Service
 public class ReservationServiceImpl implements ReservationService {
 
+    private final JavaMailSender javaMailSender;
+
+
     @Autowired
     ReservationDao reservationDao;
     @Autowired
@@ -34,6 +38,10 @@ public class ReservationServiceImpl implements ReservationService {
     CopyDao copyDao;
     @Autowired
     BookService bookService;
+
+    public ReservationServiceImpl(JavaMailSender javaMailSender) {
+        this.javaMailSender = javaMailSender;
+    }
 
     @Override
     public List<Reservation> findReservation(Integer userId) {
@@ -121,6 +129,21 @@ public class ReservationServiceImpl implements ReservationService {
         List<Reservation> reservations = reservationDao.findAllByBook_BookId(bookId);
         Integer nbCurrentReservations = reservations.size();
         return nbCurrentReservations;
+    }
+
+    public void sendMailToMember(Reservation reservation) {
+        StringBuilder body = new StringBuilder();
+        body.append("Cher Membre,\r\nUn exemplaire du livre que vous avez réserver est disponible\r\n")
+                .append("\r\nLe livre concerné: ").append(reservation.getBook().getTitle()).append(".\r\n")
+                .append("\r\nMerci de le récupérer dans les 48h.\r\n")
+                .append("Passer ce délai le livre sera proposé à la personne suivante sur la liste.\r\n")
+                .append("\r\nCordialement,\r\nLe gestionnaire de OCLibrary");
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom("admbiblioc@gmail.com");
+        simpleMailMessage.setTo(reservation.getUser().getEmail());
+        simpleMailMessage.setSubject("[OCLibrary] - Votre réservation est disponible");
+        simpleMailMessage.setText(body.toString());
+        javaMailSender.send(simpleMailMessage);
     }
 
 }
