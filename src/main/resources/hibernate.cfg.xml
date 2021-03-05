@@ -18,5 +18,6 @@
         <mapping class="com.nicoe.library.model.entities.Book" />
         <mapping class="com.nicoe.library.model.entities.Library" />
         <mapping class="com.nicoe.library.model.entities.Copy" />
+        <mapping class="com.nicoe.library.model.entities.Reservation" />
     </session-factory>
 </hibernate-configuration>
