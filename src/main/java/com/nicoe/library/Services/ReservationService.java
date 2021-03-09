@@ -11,4 +11,5 @@ public interface ReservationService {
     void cancelReservation(Integer reservationId);
     Reservation createReserv(CreateReservation createReservation);
     Integer nbCurrentReservations(Integer bookId);
+    void sendMailToMember(Reservation reservation);
 }

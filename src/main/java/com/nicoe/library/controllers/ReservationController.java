@@ -1,5 +1,6 @@
 package com.nicoe.library.controllers;
 
+import com.nicoe.library.Services.BatchService;
 import com.nicoe.library.Services.BookService;
 import com.nicoe.library.Services.ReservationService;
 import com.nicoe.library.mapping.CreateReservation;
@@ -18,6 +19,8 @@ public class ReservationController {
     ReservationService reservationService;
     @Autowired
     BookService bookService;
+    @Autowired
+    BatchService batchService;
 
 
     /**
@@ -63,6 +66,11 @@ public class ReservationController {
     @PostMapping("/reservation")
     public Reservation makeReservation(@RequestBody CreateReservation createReservation){
         return reservationService.createReserv(createReservation);
+    }
+
+    @GetMapping("/reservation/refresh")
+    public void refreshReservation() {
+        batchService.refreshReservation();
     }
 
 }
