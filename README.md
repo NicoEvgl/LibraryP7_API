@@ -2,7 +2,7 @@
 
 Contexte
 
-Ce projet a été développé dans le cadre du cursus "Développeur d'application Java" d'OpenClassrooms et correspond à l'API du projet 7 "Développez le nouveau système d’information de la bibliothèque d’une grande ville". 
+Ce projet a été développé dans le cadre du cursus "Développeur d'application Java" d'OpenClassrooms et correspond à l'API du projet 7 et 10 "Développez le nouveau système d’information de la bibliothèque d’une grande ville". 
 
 L'API permet d'exposer les informatinos concernant le catalogues et la gestion des prêts d'une bibliothèque.
 
@@ -11,11 +11,11 @@ L'API permet d'exposer les informatinos concernant le catalogues et la gestion d
 Version de java : 11 (jdk utilisé : jdk13) 
 Maven 3.6 
 
-[ API ] : API Rest https://github.com/NicoEvgl/LibraryP7_API.git 'LibraryP7_Api'
+[ API ] : API Rest https://github.com/NicoEvgl/Library_API.git 'Library_Api'
 
-[ batch ] : Système d’envoi d’e-mails récurent https://github.com/NicoEvgl/LibraryP7_Batch.git 'LibraryP7_Batch'
+[ batch ] : Système d’envoi d’e-mails récurent https://github.com/NicoEvgl/Library_Batch.git 'Library_Batch'
 
-[ WebClient ] : Application web https://github.com/NicoEvgl/LibraryP7_WebClient.git 'LibraryP7_WebClient'
+[ WebClient ] : Application web https://github.com/NicoEvgl/Library_WebClient.git 'Library_WebClient'
 
 # Frameworks
 
