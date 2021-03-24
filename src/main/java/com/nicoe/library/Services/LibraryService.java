@@ -7,5 +7,5 @@ import java.util.List;
 
 @Service
 public interface LibraryService {
-    List<Library> libraryList();
+
 }
