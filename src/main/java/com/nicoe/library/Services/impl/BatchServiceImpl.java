@@ -29,7 +29,6 @@ public class BatchServiceImpl implements BatchService {
         addAlertDate(listNewReservation);
     }
 
-    @Transactional
     public List<Integer> deleteExceededReservation(){
         List<Integer> listBookId = new ArrayList<>();
         Date dayDate = java.sql.Date.valueOf(LocalDate.now().minusDays(2));
@@ -58,7 +57,6 @@ public class BatchServiceImpl implements BatchService {
         }
     }
 
-    @Transactional
     public void addAlertDate(List<Reservation> reservations) {
         Date alertDate = new Date();
         for (int i=0;i<reservations.size();i++) {

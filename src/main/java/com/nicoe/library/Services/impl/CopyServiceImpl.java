@@ -32,8 +32,9 @@ public class CopyServiceImpl implements CopyService {
     public Copy extendLoan(Integer copyId) {
         Copy copy = findCopyById(copyId);
         Date dayDate = Date.valueOf(LocalDate.now());
+        assert copy != null;
         if (dayDate.compareTo(copy.getLoanEndDate()) <0){
-            copy = editDateAndExtension(copy);
+            editDateAndExtension(copy);
             copy.setExtend(true);
             copyDao.save(copy);
         }
@@ -59,7 +60,7 @@ public class CopyServiceImpl implements CopyService {
         loanedCopy.setUser(copy.getUser());
         loanedCopy.setAvailable(false);
         loanedCopy.setExtend(false);
-        loanedCopy = editDateAndExtension(loanedCopy);
+        editDateAndExtension(loanedCopy);
         copyDao.save(loanedCopy);
         return String.valueOf(loanedCopy.getLoanEndDate());
     }
@@ -67,6 +68,7 @@ public class CopyServiceImpl implements CopyService {
     @Override
     public void returnLoan(Integer copyId) {
         Copy copy = findCopyById(copyId);
+        assert copy != null;
         findReservationForAlert(copy.getBook());
         copy.setAvailable(true);
         copy.setExtend(false);
