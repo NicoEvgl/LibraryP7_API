@@ -117,7 +117,7 @@ public class CopyServiceImpl implements CopyService {
     }
 
     private void findReservationForRemove(User user, Book book){
-        List<Reservation> reservationList = reservationDao.findAllByBook_BookIdOrderByReservationId(book.getBookId());
+        List<Reservation> reservationList = reservationDao.findAllByUser_UserId(user.getUserId());
         if (reservationList.size() > 0){
             if (reservationList.get(0).getUser().getUserId().equals(user.getUserId())){
                 reservationService.cancelReservation(reservationList.get(0).getReservationId());
