@@ -2,6 +2,7 @@ package com.nicoe.library.model.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,7 +24,10 @@ public class User implements Serializable {
     private String email;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private Set<Copy> copies;
+    private List<Copy> copies;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Reservation> reservations;
 
     public Integer getUserId() {
         return userId;
@@ -73,24 +77,19 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public Set<Copy> getCopies() {
+    public List<Copy> getCopies() {
         return copies;
     }
 
-    public void setCopies(Set<Copy> copies) {
+    public void setCopies(List<Copy> copies) {
         this.copies = copies;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", pseudo='" + pseudo + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", copies=" + copies +
-                '}';
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

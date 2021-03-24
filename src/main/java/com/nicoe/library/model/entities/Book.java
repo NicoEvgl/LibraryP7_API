@@ -2,6 +2,7 @@ package com.nicoe.library.model.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,6 +19,9 @@ public class Book implements Serializable {
 
     @OneToMany (mappedBy = "book", cascade = CascadeType.ALL)
     private Set<Copy> copies;
+
+    @OneToMany (mappedBy = "book", cascade = CascadeType.ALL)
+    private List<Reservation> reservations;
 
     public Integer getBookId() {
         return bookId;
@@ -49,5 +53,13 @@ public class Book implements Serializable {
 
     public void setCopies(Set<Copy> copies) {
         this.copies = copies;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

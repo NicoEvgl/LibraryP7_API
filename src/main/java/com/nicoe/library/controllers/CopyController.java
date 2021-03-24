@@ -22,6 +22,10 @@ public class CopyController {
 
     static Logger logger = LogManager.getLogger(CopyController.class);
 
+    public CopyController(CopyService copyService) {
+
+    }
+
     /**
      * Extend Loan
      * @param copyId Integer Copy ID
@@ -91,9 +95,6 @@ public class CopyController {
      */
     @GetMapping("/loanLate-list")
     public List<String> listMail(){
-        logger.debug("CopyController loanLate-list");
-        List<String> email =new ArrayList<>();
-        email = copyService.listMail();
-        return email;
+        return copyService.listMail();
     }
 }

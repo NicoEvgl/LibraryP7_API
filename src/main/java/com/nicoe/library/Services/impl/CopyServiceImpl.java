@@ -1,8 +1,13 @@
 package com.nicoe.library.Services.impl;
 
 import com.nicoe.library.Services.CopyService;
+import com.nicoe.library.Services.ReservationService;
 import com.nicoe.library.model.dao.CopyDao;
+import com.nicoe.library.model.dao.ReservationDao;
+import com.nicoe.library.model.entities.Book;
 import com.nicoe.library.model.entities.Copy;
+import com.nicoe.library.model.entities.Reservation;
+import com.nicoe.library.model.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +23,15 @@ public class CopyServiceImpl implements CopyService {
 
     @Autowired
     CopyDao copyDao;
+    @Autowired
+    ReservationDao reservationDao;
+    @Autowired
+    ReservationService reservationService;
 
     @Override
     public Copy extendLoan(Integer copyId) {
         Copy copy = findCopyById(copyId);
         Date dayDate = Date.valueOf(LocalDate.now());
-        assert copy != null;
         if (dayDate.compareTo(copy.getLoanEndDate()) <0){
             copy = editDateAndExtension(copy);
             copy.setExtend(true);
@@ -47,6 +55,7 @@ public class CopyServiceImpl implements CopyService {
     @Override
     public String makeLoan(Copy copy) {
         Copy loanedCopy = copyDao.findByCopyId(copy.getCopyId());
+        findReservationForRemove(copy.getUser(),copy.getBook());
         loanedCopy.setUser(copy.getUser());
         loanedCopy.setAvailable(false);
         loanedCopy.setExtend(false);
@@ -58,12 +67,12 @@ public class CopyServiceImpl implements CopyService {
     @Override
     public void returnLoan(Integer copyId) {
         Copy copy = findCopyById(copyId);
-        assert copy != null;
+        findReservationForAlert(copy.getBook());
         copy.setAvailable(true);
         copy.setExtend(false);
-        copy.setUser(copy.getUser());
-        copy.setLoanStartDate(copy.getLoanStartDate());
-        copy.setLoanEndDate(copy.getLoanEndDate());
+        copy.setUser(null);
+        copy.setLoanStartDate(null);
+        copy.setLoanEndDate(null);
         copyDao.save(copy);
     }
 
@@ -93,5 +102,24 @@ public class CopyServiceImpl implements CopyService {
     private Copy findCopyById(Integer copyId){
         Optional<Copy> copy = copyDao.findById(copyId);
         return copy.isPresent() ? copy.get() :null ;
+    }
+
+    private void findReservationForAlert(Book book){
+        List<Reservation> reservationList = reservationDao.findAllByBook_BookId(book.getBookId());
+        if (!reservationList.isEmpty()){
+            Reservation reservation = reservationList.get(0);
+            reservationService.sendMailToMember(reservation);
+            reservation.setAlertDate(new java.util.Date());
+            reservationDao.save(reservation);
+        }
+    }
+
+    private void findReservationForRemove(User user, Book book){
+        List<Reservation> reservationList = reservationDao.findAllByBook_BookIdOrderByReservationId(book.getBookId());
+        if (reservationList.size() > 0){
+            if (reservationList.get(0).getUser().getUserId().equals(user.getUserId())){
+                reservationService.cancelReservation(reservationList.get(0).getReservationId());
+            }
+        }
     }
 }
